@@ -1,0 +1,67 @@
+* {
+
+    background-color: #051726;
+
+}
+
+.Texto {
+
+    color: #cccccc ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.TextoChico {
+
+    color: #359945 ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#divCentro{
+    
+    display: flex;
+    align-items: center;
+    
+}
+
+#botones{
+
+    display: flexbox;
+    background-color: purple;
+    
+
+}
+
+.boton{
+
+    background-color: #cccccc ;
+   
+
+}
+
+
+#contraseñaGenerada{
+
+    background-color: #183c5a;
+    border: none;
+    border-bottom: 2px solid #224c6e;
+    height: 48px;
+    width: 60%;
+    font-size: 26px;
+    color: #cccccc;
+}
+
+
+#numeroLongitud{
+
+width: 80px;
+height: 26px;
+color: #cccccc;
+background-color: #183c5a;
+font-size: 22px;
+text-align: right;
+border: none;
+border-bottom: 2px solid #224c6e;
+
+}

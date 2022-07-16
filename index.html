@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<h1 class="Texto">Welcome to our password generator.</h1>
+<h3 class="Texto">Use our free online generator to get access to a highly secure random password of your liking. Choose the characters you want on your password and let the generator do the rest.</h3>
+
+<br><br><br>    
+
+<h2 class="Texto">Customize your password.</h2>
+<br>
+
+<div id="divCentro"> 
+
+    <input type="text" name="contraseñaGenerada" id="contraseñaGenerada"  ">
+
+    <div id="botones">
+
+        <button class="boton">Copy to clipboard.</button>
+        <button class="boton">Generate again.</button>
+
+    </div>
+</div>
+
+<div id="Caracteristicas">
+
+        <div id="Izquierda">
+
+            <label for="barritaRange" class="TextoChico">Longitud de la contraseña: <br></label>
+            <input type="number" id="numeroLongitud"><input type="range" name="barrita" id="barritaRange">
+
+        </div>
+
+        <div id="Derecha">
+            
+            <input type="checkbox" id="FacilDecir">   
+            <label for="FacilDecir" class="TextoChico" >Facil de decir.</label>   
+            <input type="checkbox" id="Minus">        
+            <label for="Minus" class="TextoChico" >Incluye minusculas.</label>  
+            <input type="checkbox" id="Mayus">
+            <label for="Mayus" class="TextoChico" >Incluye mayusculas.</label>  
+            <input type="checkbox" id="Nums">
+            <label for="Nums" class="TextoChico" >Incluye numeros.</label>  
+            <input type="checkbox" id="Simbolos">
+            <label for="Simbolos" class="TextoChico" >Incluye simbolos.</label>  
+
+        </div>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+
+</html>
