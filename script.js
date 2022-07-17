@@ -1,61 +1,88 @@
 
 
 
-let longitudContraseñaInput = document.getElementById("numeroLongitud");
-let passLength = longitudContraseñaInput.value;
-let contraseña = document.getElementById("contraseñaGenerada");
+let lengthInput = document.getElementById("numeroLongitud");
+let passLength = lengthInput.value;
+let passwordOutput = document.getElementById("contraseñaGenerada");
 let generateAgain = document.getElementById("generateAgain");
-let totalUpperCase = 0;
-let totalUnderCase = 0;
-let totalNumbers = 0;
+let checkUpperCase = document.getElementById("Mayus");
+let checkUnderCase = document.getElementById("Minus"); 
+let checkNumbers = document.getElementById("Nums");
 
-totalUnderCase = randomNum(totalUnderCase, 10);
-totalUpperCase = randomNum(totalUpperCase, 10);
-totalNumbers = randomNum(totalNumbers, 10);
 
 let upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] ;
 let underCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] ;
 let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] ;
+let fullArray = [];
 let password = [];
 
-contraseña.value = "My Value";
 
-//modify password length.
-longitudContraseñaInput.addEventListener("click",  modificarTamaño=>{
-
-    passLength = longitudContraseñaInput.value;
-    console.log(passLength);
-    console.log(totalUpperCase);
+checkNumbers.addEventListener("click", check=>{
     
+    if (checkNumbers.checked) {
+
+       fullArray = fullArray.concat(numbers);
+      
+       console.log(fullArray);
+
+
+    } else {
+
+        console.log("rayos");
+    }
+
+    generatePassword(passLength)
+
 })
 
-//get a random number for array positions
-function randomNum(cantChar, longitudPorChar) {
+checkUpperCase.addEventListener("click", check=>{
     
-    cantChar = Math.floor((Math.random()*longitudPorChar)+1);
-    return cantChar;
+    if (checkUpperCase.checked) {
 
-}
+       fullArray = fullArray.concat(upperCase);
+      
+       console.log(fullArray);
 
-generateAgain.addEventListener("click", generatePassword=>{
 
-    console.log("Cantidad de caracteres en contraseña:" + passLength);
+    } else {
 
-    totalUpperCase = randomNum(totalUpperCase, passLength/2);
-    console.log("Cantidad de mayusculas: "+totalUpperCase);
+        console.log("rayos");
+    }
 
-    totalUnderCase = randomNum(totalUnderCase, passLength/2);
-    console.log("Cantidad de minusculas: "+totalUnderCase);
+    generatePassword(passLength)
 
-    totalNumbers = randomNum(totalNumbers, passLength/2);
-    console.log("Cantidad de numeros: "+totalNumbers);
+})
 
-    createPassword(totalUpperCase,totalUnderCase,totalNumbers);
-});
-
-function createPassword(totalUpperCase,totalUnderCase,totalNumbers) {
+checkUnderCase.addEventListener("click", check=>{
     
-    let fusion = upperCase.concat(underCase);
-    console.log(fusion);
+    if (checkUnderCase.checked) {
+
+       fullArray = fullArray.concat(underCase);
+      
+       console.log(fullArray);
+
+
+    } else {
+
+        console.log("rayos");
+    }
+
+    generatePassword(passLength)
+})
+
+function generatePassword(passLength) {
+
+    password = [];
+    passwordOutput.value = password;
+
+    let i=0;
+    while ( i != passLength ){
     
+        password.push(fullArray[Math.floor(Math.random()*fullArray.length)])
+        i++;
+    
+    }
+
+    passwordOutput.value = password;
+
 }
