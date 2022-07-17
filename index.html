@@ -27,33 +27,40 @@
 
     <div id="botones">
 
-        <button class="boton">Copy to clipboard.</button>
+        <button class="boton" id="copyClipboard">Copy to clipboard.</button>
         <button class="boton" id="generateAgain" >Generate again.</button>
 
     </div>
 </div>
 
+<div>
+
+    <p id="copiedText"></p>
+
+</div>
+
+<br>
 <div id="Caracteristicas">
 
         <div id="Izquierda">
 
             <label for="barritaRange" class="TextoChico">Longitud de la contraseña: <br></label>
-            <input type="number" id="numeroLongitud" value="8"><input type="range" name="barrita" id="barritaRange">
+            <input type="number" id="numeroLongitud" value="8" min="8" max="30"><input type="range" id="sliderLength" min="8" max="30" value="8" step="1">
 
         </div>
 
         <div id="Derecha">
             
             <input type="checkbox" id="FacilDecir">   
-            <label for="FacilDecir" class="TextoChico" >Facil de decir.</label>   
+            <label for="FacilDecir" class="TextoChico" >Easy to say.</label>   
             <input type="checkbox" id="Minus">        
-            <label for="Minus" class="TextoChico" >Incluye minusculas.</label>  
+            <label for="Minus" class="TextoChico" >Includes undercase.</label>  
             <input type="checkbox" id="Mayus">
-            <label for="Mayus" class="TextoChico" >Incluye mayusculas.</label>  
+            <label for="Mayus" class="TextoChico" >Includes uppercase.</label>  
             <input type="checkbox" id="Nums">
-            <label for="Nums" class="TextoChico" >Incluye numeros.</label>  
-            <input type="checkbox" id="Simbolos">
-            <label for="Simbolos" class="TextoChico" >Incluye simbolos.</label>  
+            <label for="Nums" class="TextoChico" >Includes numbers.</label>  
+            <input type="checkbox" id="Symbols">
+            <label for="Symbols" class="TextoChico" >Includes symbols.</label>  
 
         </div>
     </div>
