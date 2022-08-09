@@ -22,7 +22,7 @@ let fullArray = [];
 let password = [];
 
 
-//checks length input and writes it on let, automatically calls generatePassword() 
+//checks length input and writes it on passLength, automatically calls generatePassword() 
 lengthInput.addEventListener("click", checkLength=>{
 
     passLength =lengthInput.value;
@@ -30,7 +30,7 @@ lengthInput.addEventListener("click", checkLength=>{
     generatePassword(passLength);
 
 })
-
+//checks slider input and writes it on passLength, automatically calls generatePassword() 
 sliderInput.addEventListener("click", checkSlider=>{
 
     passLength = sliderInput.value;
@@ -46,8 +46,7 @@ generateAgain.addEventListener("click", buttonGenerate=>{
 
 })
 
-//button to copy password to clipborad instantly. 
-// AGREGAR UN MENSAJE DE QUE LA CONTRASEÑA FUE COPIADA.
+//button to copy password to clipborad instantly.  Shows msg.
 copyClipboard.addEventListener("click", copyToClip=>{
 
     navigator.clipboard.writeText((passwordOutput.value));
@@ -62,13 +61,18 @@ checkNumbers.addEventListener("click", check=>{
     if (checkNumbers.checked) {
 
        fullArray = fullArray.concat(numbers);
-      
+       
+       //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
+       password = password.push(numbers[Math.floor(Math.random()*fullArray.length)])
        console.log(fullArray);
 
 
     } else {
 
-        console.log("rayos");
+        fullArray = fullArray.filter( function( numberArray ) {
+            return !numbers.includes( numberArray );
+          } );
+        console.log(fullArray);
     }
 
     generatePassword(passLength)
@@ -87,7 +91,11 @@ checkUpperCase.addEventListener("click", check=>{
 
     } else {
 
-        console.log("rayos");
+
+        fullArray = fullArray.filter( function( numberArray ) {
+            return !upperCase.includes( numberArray );
+          } );
+        console.log(fullArray);
     }
 
     generatePassword(passLength)
@@ -106,7 +114,11 @@ checkUnderCase.addEventListener("click", check=>{
 
     } else {
 
-        console.log("rayos");
+
+        fullArray = fullArray.filter( function( numberArray ) {
+            return !underCase.includes( numberArray );
+          } );
+        console.log(fullArray);
     }
 
     generatePassword(passLength)
@@ -124,7 +136,11 @@ checkSymbols.addEventListener("click", check=>{
 
     } else {
 
-        console.log("rayos");
+
+        fullArray = fullArray.filter( function( numberArray ) {
+            return !symbols.includes( numberArray );
+          } );
+        console.log(fullArray);
     }
 
     generatePassword(passLength)
@@ -133,6 +149,7 @@ checkSymbols.addEventListener("click", check=>{
 //generate the password array with push and write it on the output
 function generatePassword(passLength) {
 
+    //Empty output, so new passwords arent generated next to old passwords.
     password = [];
     passwordOutput.value = password;
 
