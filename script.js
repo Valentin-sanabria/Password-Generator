@@ -206,3 +206,21 @@ function generatePassword(passLength, numberEnabled, underEnabled, upperEnabled,
     password = [];
 
 }
+
+function  shuffleArray(password){
+    
+    let currentIndex = password.length;
+    let randomIndex = 0; 
+
+    while (currentIndex != 0) {       
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+
+        //swap places
+        [password[currentIndex], password[randomIndex]] = [ password[randomIndex], password[currentIndex]];
+        
+        currentIndex--;
+    }
+
+
+}
