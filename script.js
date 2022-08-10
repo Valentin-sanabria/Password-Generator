@@ -21,13 +21,18 @@ let symbols = ["!", "&", "_", "/", "$", "#", "@", "?", ";", "%"];
 let fullArray = [];
 let password = [];
 
+let upperEnabled = false;
+let underEnabled = false;
+let symbolEnabled = false;
+let numberEnabled = false;
+
 
 //checks length input and writes it on passLength, automatically calls generatePassword() 
 lengthInput.addEventListener("click", checkLength=>{
 
     passLength =lengthInput.value;
     sliderInput.value = passLength;
-    generatePassword(passLength);
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled);
 
 })
 //checks slider input and writes it on passLength, automatically calls generatePassword() 
@@ -35,14 +40,14 @@ sliderInput.addEventListener("click", checkSlider=>{
 
     passLength = sliderInput.value;
     lengthInput.value = passLength;
-    generatePassword(passLength);
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled);
 
 })
 
 //button which generates another password with the same requisites.
 generateAgain.addEventListener("click", buttonGenerate=>{
 
-        generatePassword(passLength);
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled);
 
 })
 
@@ -61,11 +66,7 @@ checkNumbers.addEventListener("click", check=>{
     if (checkNumbers.checked) {
 
        fullArray = fullArray.concat(numbers);
-       
-       //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
-       password = password.push(numbers[Math.floor(Math.random()*fullArray.length)])
-       console.log(fullArray);
-
+       numberEnabled = true;
 
     } else {
 
@@ -73,9 +74,11 @@ checkNumbers.addEventListener("click", check=>{
             return !numbers.includes( numberArray );
           } );
         console.log(fullArray);
+
+        numberEnabled = false;
     }
 
-    generatePassword(passLength)
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled)
 
 })
 
@@ -85,8 +88,7 @@ checkUpperCase.addEventListener("click", check=>{
     if (checkUpperCase.checked) {
 
        fullArray = fullArray.concat(upperCase);
-      
-       console.log(fullArray);
+       upperEnabled = true;
 
 
     } else {
@@ -96,9 +98,11 @@ checkUpperCase.addEventListener("click", check=>{
             return !upperCase.includes( numberArray );
           } );
         console.log(fullArray);
+        
+        upperEnabled = false;
     }
 
-    generatePassword(passLength)
+    generatePassword(passLength, numberEnabled, underEnabled, upperEnabled, symbolEnabled)
 
 })
 
@@ -107,9 +111,8 @@ checkUnderCase.addEventListener("click", check=>{
     
     if (checkUnderCase.checked) {
 
-       fullArray = fullArray.concat(underCase);
-      
-       console.log(fullArray);
+       fullArray = fullArray.concat(underCase);     
+       underEnabled = true;
 
 
     } else {
@@ -119,9 +122,10 @@ checkUnderCase.addEventListener("click", check=>{
             return !underCase.includes( numberArray );
           } );
         console.log(fullArray);
+        underEnabled = false;
     }
 
-    generatePassword(passLength)
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled)
 })
 
 //click event for adding symbols checkbox
@@ -130,8 +134,7 @@ checkSymbols.addEventListener("click", check=>{
     if (checkSymbols.checked) {
 
        fullArray = fullArray.concat(symbols);
-      
-       console.log(fullArray);
+       symbolEnabled = true;
 
 
     } else {
@@ -141,27 +144,65 @@ checkSymbols.addEventListener("click", check=>{
             return !symbols.includes( numberArray );
           } );
         console.log(fullArray);
+        symbolEnabled = false;
     }
 
-    generatePassword(passLength)
+    generatePassword(passLength,numberEnabled, underEnabled, upperEnabled, symbolEnabled)
 })
 
 //generate the password array with push and write it on the output
-function generatePassword(passLength) {
+function generatePassword(passLength, numberEnabled, underEnabled, upperEnabled, symbolEnabled) {
+
+    if(numberEnabled == true){
+
+       //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
+       password.push(numbers[Math.floor(Math.random()*numbers.length)])
+       console.log("caracter push: " + password);
+
+    }
+
+    if(underEnabled == true){
+
+        //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
+        password.push(underCase[Math.floor(Math.random()*underCase.length)])
+        console.log("caracter push: " + password);
+ 
+    }
+
+    if(upperEnabled == true){
+
+        //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
+        password.push(upperCase [Math.floor(Math.random()*upperCase.length)])
+        console.log("caracter push: " + password);
+ 
+    }
+
+    if(symbolEnabled == true){
+
+        //automatically add a number to the password array. We do this to guarantee AT LEAST one number in  the password. If not, chances are that there wont be any
+        password.push(symbols[Math.floor(Math.random()*symbols.length)])
+        console.log("caracter push: " + password);
+ 
+    }
+
+
+    passwordOutput.value = password;
+
+    //Add chars until the password fulfills the length required by the user
+    while ( password.length != passLength ){
+    
+        password.push(fullArray[Math.floor(Math.random()*fullArray.length)])
+
+    }
+
+    //Re-shuffle the password so it doesnt always start with a number, followed by an undercase, etc.
+    shuffleArray(password);
+
+    //Show the password in the output.
+    passwordOutput.value = password.join("");
+    console.log("pass terminada "+password);
 
     //Empty output, so new passwords arent generated next to old passwords.
     password = [];
-    passwordOutput.value = password;
-
-    let i=0;
-    while ( i != passLength ){
-    
-        password.push(fullArray[Math.floor(Math.random()*fullArray.length)])
-        i++;
-    }
-
-    passwordOutput.value = password.join("");
-    
 
 }
-
